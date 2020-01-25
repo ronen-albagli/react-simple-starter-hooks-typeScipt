@@ -1,0 +1,72 @@
+.app-layout {
+  height: 100%;
+  width: 100%;
+  background: #282c34;
+  position: absolute;
+  .app-header {
+    height: 55px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ff000000;
+    align-items: center;
+    color: white;
+    background-color: #20252d;
+    border-bottom: 1px solid #8080809e;
+
+    .header-right {
+      display: flex;
+      justify-content: space-between;
+      width: 25%;
+      height: 100%;
+      align-items: center;
+      div {
+        cursor: pointer;
+      }
+
+      .header-list-item {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding: 0px 10px;
+        transition: border 0.2s ease, color 0.2s ease;
+        border-bottom: 1px solid transparent;
+        font-weight: 500;
+        font-size: 16px;
+        color: #9c9c9c;
+        &:hover {
+          color: #e91e63;
+          border-bottom: 1px solid #e91e63;
+        }
+      }
+    }
+    .app-logo {
+      height: 100%;
+      img {
+        height: 100%;
+      }
+    }
+
+    .avatar-container {
+      display: flex;
+      align-items: center;
+      width: 50px;
+      .avatar-circle {
+        img {
+          border-radius: 50px;
+        }
+      }
+    }
+  }
+}
+
+.app-content {
+  top: 55px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  overflow-y: scroll;
+  padding: 15px;
+}
