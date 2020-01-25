@@ -1,16 +1,19 @@
+@import "../../main.scss";
+
 .input-text-container {
   display: flex;
   flex-direction: column;
   position: relative;
-  border-bottom: 1px solid #ff5722;
-  height: 50px;
+  border-bottom: 1px solid $orange-dark;
+  height: 60px;
   transition: border 0.2s ease;
+  margin-top: 20px;
   &.up {
-    border-bottom: 1px solid #e91e63;
+    border-bottom: 1px solid $red-light;
     label {
-      font-size: 16px;
+      font-size: 10px;
       bottom: 28px;
-      color: #e91e63;
+      color: $red-light;
     }
   }
 
@@ -23,8 +26,8 @@
     height: 50px;
     z-index: 2;
     position: absolute;
-    top: 10px;
-    color: #ff9800;
+    top: 20px;
+    color: $orange;
     font-weight: 500;
     font-size: 15px;
   }
@@ -38,8 +41,8 @@
     height: 50px;
     z-index: 2;
     position: absolute;
-    top: 50%;
-    color: #ff9800;
+    top: 65%;
+    color: $orange;
     font-weight: 500;
     font-size: 15px;
   }
@@ -47,22 +50,23 @@
   .open {
     &.drop-list {
       position: absolute;
-      border: 1px solid #e91e63;
+      border: 1px solid $red-light;
       width: 100px;
-      top: 55px;
+      top: 65px;
       border-radius: 5px;
-      height: 100px;
+      height: 95px;
       opacity: 1;
-      background-color: #292c33;
+      z-index: 1;
       div {
         height: 31px;
-        border-bottom: 1px solid #e91e63;
-        color: #e91e63;
+        border-bottom: 1px solid $red-light;
+        color: $red-light;
         padding-left: 15px;
         display: flex;
         align-items: center;
         font-weight: 500;
-        font-size: 14px;
+        font-size: 15px;
+        background-color: #292c33;
 
         &:last-child {
           border-bottom: none;
@@ -70,8 +74,8 @@
         &.input-active {
           &:after {
             content: "";
-            border-right: 2px solid #e91e63;
-            border-bottom: 2px solid #e91e63;
+            border-right: 2px solid $red-light;
+            border-bottom: 2px solid $red-light;
             height: 13px;
             position: absolute;
             right: 15px;
@@ -96,20 +100,16 @@
       display: flex;
       align-items: center;
       font-weight: 500;
-      font-size: 16px;
+      font-size: 15px;
     }
   }
 
   label {
-    font-size: 20px;
+    font-size: 15px;
     position: absolute;
-    bottom: 0px;
-    transition: font-size 0.2s ease, bottom 0.2s ease;
-    color: #ff5722;
-    // &.up {
-    //   font-size: 16px;
-    //   bottom: 28px;
-    //   color: #e91e63;
-    // }
+    bottom: 5px;
+    transition: font-size 0.3s ease, bottom 0.3s ease;
+    color: $orange;
+    text-transform: uppercase;
   }
 }

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { TextInput, DropInput } from "../inputs/input.txt";
 import formSchema from "./schemas/battleSchema.json";
 import "./forms.scss";
+import Button from "../buttons/Button";
 
 const FormBattle: React.FC = (props: any) => {
   const [formState, setFormState] = useState({ ...formSchema });
@@ -45,13 +46,14 @@ const FormBattle: React.FC = (props: any) => {
 
   return (
     <div className="battle-form-container">
-      <div className="form-title">New Form</div>
+      <div className="form-title">CREATE NEW CHALLENGE</div>
       <form>
         <div className="single">
           {renderInputs(["challengeName", "description"])}
         </div>
         <div className="group">{renderInputs(["difficultly", "duration"])}</div>
         <div>{renderInputs(["functionParams"])}</div>
+        <div className="section-title">INSERT YOUR TEST CASES HERE</div>
         <div className="inputs-groups">
           <div className="group-params">
             <div className="group-title">First params Group</div>
@@ -95,6 +97,32 @@ const FormBattle: React.FC = (props: any) => {
           </div>
         </div>
       </form>
+      <div className="actions-section">
+        <div className={"action-group"}>
+          <Button
+            shape={"rounded"}
+            title={"BACK"}
+            btnStyle={"empty"}
+            color={"danger"}
+            fn={() => {}}
+            // style={{ width: "1px", opacity: 0 }}
+          />
+          <Button
+            shape={"rounded"}
+            title={"NEXT"}
+            btnStyle={"empty"}
+            color={"orange"}
+            fn={() => {}}
+          />
+        </div>
+        <Button
+          shape={"rounded"}
+          title={"TEST"}
+          btnStyle={"empty"}
+          color={"danger"}
+          fn={() => {}}
+        />
+      </div>
     </div>
   );
 };

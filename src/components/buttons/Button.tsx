@@ -7,6 +7,7 @@ type ButtonProps = {
   title: String;
   color: String;
   fn: () => any;
+  style?: any;
 };
 
 const Button = (props: ButtonProps) => {
@@ -14,6 +15,7 @@ const Button = (props: ButtonProps) => {
     <div
       className={`button-container ${props.shape} ${props.btnStyle} ${props.color}`}
       onClick={props.fn}
+      style={props.style}
     >
       <div>{props.title}</div>
     </div>

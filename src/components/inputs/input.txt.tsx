@@ -45,7 +45,7 @@ export const DropInput = (props: TextInput) => {
   };
   return (
     <div className={`input-text-container ${props.value ? "up" : ""}`}>
-      <label>{label}</label>
+      <label className="ddl-label">{label}</label>
       <div className="selection input" onClick={() => setFocused(true)}>
         {value}
       </div>
