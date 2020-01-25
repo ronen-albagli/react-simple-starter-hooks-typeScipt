@@ -1,7 +1,7 @@
 @import "../../main.scss";
 
 .battle-form-container {
-  width: 50%;
+  width: 45%;
   font-family: sans-serif;
   position: relative;
   .group {
@@ -42,13 +42,11 @@
   .inputs-groups {
     display: flex;
     justify-content: space-between;
-    // border: 1px solid #$orange;
     align-items: center;
     padding-bottom: 15px;
     padding-left: 15px;
     padding-right: 15px;
     margin-top: 45px;
-    // border-radius: 5px;
     position: relative;
     .group-params {
       display: flex;
