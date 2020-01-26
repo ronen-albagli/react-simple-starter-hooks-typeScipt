@@ -47,14 +47,16 @@ const FormBattle = (props: any) => {
 
   return (
     <div className="battle-form-container">
-      <div className="form-title">CREATE NEW CHALLENGE</div>
+      <div className="form-title">Create New Challenge</div>
       <form>
         <div className="single">
           {renderInputs(["challengeName", "description"])}
         </div>
-        <div className="group">{renderInputs(["difficultly", "duration"])}</div>
-        <div>{renderInputs(["functionParams"])}</div>
-        <div className="section-title">INSERT YOUR TEST CASES HERE</div>
+        <div className="group">
+          {renderInputs(["difficultly", "duration", "functionParams"])}
+        </div>
+        {/* <div>{renderInputs(["functionParams"])}</div> */}
+        <div className="section-title">Insert You're Test Cases Here</div>
         <div className="inputs-groups">
           <div className="group-params">
             <div className="group-title">First params Group</div>
@@ -97,33 +99,33 @@ const FormBattle = (props: any) => {
             </div>
           </div>
         </div>
-      </form>
-      <div className="actions-section">
-        <div className={"action-group"}>
+        <div className="actions-section">
+          <div className={"action-group"}>
+            <Button
+              shape={"rounded"}
+              title={"BACK"}
+              btnStyle={"empty"}
+              color={"danger"}
+              fn={() => {}}
+              // style={{ width: "1px", opacity: 0 }}
+            />
+            <Button
+              shape={"rounded"}
+              title={"NEXT"}
+              btnStyle={"empty"}
+              color={"orange"}
+              fn={() => {}}
+            />
+          </div>
           <Button
             shape={"rounded"}
-            title={"BACK"}
+            title={"TEST"}
             btnStyle={"empty"}
             color={"danger"}
             fn={() => {}}
-            // style={{ width: "1px", opacity: 0 }}
-          />
-          <Button
-            shape={"rounded"}
-            title={"NEXT"}
-            btnStyle={"empty"}
-            color={"orange"}
-            fn={() => {}}
           />
         </div>
-        <Button
-          shape={"rounded"}
-          title={"TEST"}
-          btnStyle={"empty"}
-          color={"danger"}
-          fn={() => {}}
-        />
-      </div>
+      </form>
     </div>
   );
 };
