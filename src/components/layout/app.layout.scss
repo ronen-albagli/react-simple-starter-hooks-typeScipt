@@ -1,7 +1,9 @@
+@import "../../main.scss";
+
 .app-layout {
   height: 100%;
   width: 100%;
-  background: #282c34;
+  background: $semi-dark-bg;
   position: absolute;
   .app-header {
     height: 55px;

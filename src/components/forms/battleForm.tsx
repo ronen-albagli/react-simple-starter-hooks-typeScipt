@@ -4,12 +4,13 @@ import formSchema from "./schemas/battleSchema.json";
 import "./forms.scss";
 import Button from "../buttons/Button";
 
-const FormBattle: React.FC = (props: any) => {
+const FormBattle = (props: any) => {
   const [formState, setFormState] = useState({ ...formSchema });
 
   const handleChange = (event: any) => {
     const newState = { ...formState };
     (newState as any)[`${event.target.name}`].value = event.target.value;
+    props.updateCodeView(newState);
     setFormState({ ...newState });
   };
 
