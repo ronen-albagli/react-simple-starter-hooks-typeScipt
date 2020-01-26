@@ -4,6 +4,11 @@ import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/theme-monokai";
 
+import "brace/mode/html";
+import "brace/theme/xcode";
+import "brace/snippets/html";
+import "brace/ext/language_tools";
+
 const IDE = (props: any) => {
   return (
     <div
