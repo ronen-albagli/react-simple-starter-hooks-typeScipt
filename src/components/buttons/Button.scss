@@ -13,7 +13,7 @@
   cursor: pointer;
   margin: 10px;
   &.full {
-    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s;
     &.danger {
       background-color: crimson;
     }
@@ -27,6 +27,7 @@
       background-color: transparent;
       border: 1px solid white;
       box-shadow: 1px 1px 7px 1px #696767;
+      transform: scale(1.05);
     }
   }
   &.empty {

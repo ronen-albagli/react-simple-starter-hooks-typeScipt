@@ -38,7 +38,6 @@ export const TextInput = (props: TextInput) => {
 export const DropInput = (props: TextInput) => {
   const [focused, setFocused] = useState(false);
   const { options, value, label, name } = props;
-  console.log(name);
   const handleSelection = (pick: String) => {
     props.change({ target: { name: name, value: pick } });
     setFocused(false);
@@ -50,8 +49,9 @@ export const DropInput = (props: TextInput) => {
         {value}
       </div>
       <div className={`drop-list ${focused ? "open" : ""}`}>
-        {options?.map(opt => (
+        {options?.map((opt: String) => (
           <div
+            key={opt as any}
             className={`${value === opt ? "input-active" : ""}`}
             onClick={() => handleSelection(opt)}
           >
@@ -62,5 +62,3 @@ export const DropInput = (props: TextInput) => {
     </div>
   );
 };
-
-// export default { TextInput };

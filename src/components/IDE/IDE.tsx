@@ -8,22 +8,64 @@ import "brace/mode/html";
 import "brace/theme/xcode";
 import "brace/snippets/html";
 import "brace/ext/language_tools";
+import { stripFunction, validateUserCode } from "../../helpers/striper";
+import { validateCodeInsert } from "../../helpers/validators";
+import "./IDE.scss";
 
-const IDE = (props: any) => {
-  return (
-    <div
-      style={{
-        position: "absolute",
-        right: "25px",
-        width: "45%",
-        height: "800px"
-      }}
-    >
-      <div>
+class IDE extends React.Component<any, any> {
+  state = {
+    code: ""
+  };
+  updateCode = (outputStr?: any) => {
+    const { code } = this.state;
+    const { valid } = validateCodeInsert(
+      code.replace(stripFunction(outputStr), "\n\n\n  "),
+      code
+    );
+    if (valid) {
+      const newIdeState = { ...this.state };
+      newIdeState.code = `${outputStr}`;
+      this.setState({ ...newIdeState });
+    }
+    if (!valid) {
+      this.setState(() => ({ code: this.state.code }));
+    }
+  };
+
+  shouldComponentUpdate(nextProps: any, nextState: any) {
+    if (nextProps !== this.props) {
+      if (this.props.isTesting !== nextProps.isTesting) {
+        console.log("in", this.state.code);
+        this.props.testUserCode(this.state.code);
+        return true;
+      }
+      if (nextProps.step === 2) {
+        this.setState(() => ({ code: this.props.codeStr }));
+        return true;
+      }
+
+      if (nextProps.step === 1 && this.props.step === 2) {
+        this.props.updateUserAnswer(stripFunction(this.state.code));
+        return true;
+      }
+      return true;
+    } else if (this.state !== nextState) {
+      if (this.state.code) {
+        return false;
+      }
+
+      return true;
+    }
+    return false;
+  }
+
+  render() {
+    return (
+      <div className="ide-container">
         <AceEditor
           mode="javascript"
           theme="monokai"
-          onChange={props.change}
+          onChange={this.updateCode}
           name="UNIQUE_ID_OF_DIV"
           editorProps={{
             $blockScrolling: true,
@@ -34,7 +76,10 @@ const IDE = (props: any) => {
           showPrintMargin={true}
           showGutter={true}
           highlightActiveLine={true}
-          value={`${props.codeStr}`}
+          value={`${
+            this.props.step === 2 ? this.state.code : this.props.codeStr
+          }`}
+          // value
           setOptions={{
             enableBasicAutocompletion: true,
             enableLiveAutocompletion: true,
@@ -45,12 +90,12 @@ const IDE = (props: any) => {
           style={{
             backgroundColor: "#0000001a",
             width: "100%",
-            height: "800px"
+            height: "100%"
           }}
         />
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default IDE;

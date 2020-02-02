@@ -1,0 +1,21 @@
+.new-battle-container {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+
+  .form-outputs {
+    height: 100%;
+    width: 45%;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  .new-battle-container {
+    .form-outputs {
+      height: 100%;
+      width: 50%;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

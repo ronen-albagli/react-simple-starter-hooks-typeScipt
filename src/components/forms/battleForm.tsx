@@ -16,6 +16,7 @@ const FormBattle = (props: any) => {
 
   const renderInputs = (fields: Array<String>) => {
     const currentState = formState as any;
+
     return fields.map((field: any) => {
       if (currentState[field].type !== "ddl")
         return (
@@ -44,7 +45,6 @@ const FormBattle = (props: any) => {
       );
     });
   };
-
   return (
     <div className="battle-form-container">
       <div className="form-title">Create New Challenge</div>
@@ -55,7 +55,6 @@ const FormBattle = (props: any) => {
         <div className="group">
           {renderInputs(["difficultly", "duration", "functionParams"])}
         </div>
-        {/* <div>{renderInputs(["functionParams"])}</div> */}
         <div className="section-title">Insert You're Test Cases Here</div>
         <div className="inputs-groups">
           <div className="group-params">
@@ -106,15 +105,18 @@ const FormBattle = (props: any) => {
               title={"BACK"}
               btnStyle={"empty"}
               color={"danger"}
-              fn={() => {}}
-              // style={{ width: "1px", opacity: 0 }}
+              fn={() => props.changeStep(1)}
             />
             <Button
               shape={"rounded"}
-              title={"NEXT"}
+              title={`${props.step === 1 ? "NEXT" : "SUBMIT"}`}
               btnStyle={"empty"}
               color={"orange"}
-              fn={() => {}}
+              fn={() =>
+                props.step === 1
+                  ? props.changeStep(2)
+                  : props.onSubmit({ ...formState })
+              }
             />
           </div>
           <Button
@@ -122,7 +124,7 @@ const FormBattle = (props: any) => {
             title={"TEST"}
             btnStyle={"empty"}
             color={"danger"}
-            fn={() => {}}
+            fn={props.onTest}
           />
         </div>
       </form>
