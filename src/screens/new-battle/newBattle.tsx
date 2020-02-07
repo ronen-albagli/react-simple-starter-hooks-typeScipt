@@ -4,7 +4,10 @@ import IDE from "../../components/IDE/IDE";
 import { parseSecondToMin } from "../../helpers/time.helper";
 import { validateCodeInsert } from "../../helpers/validators";
 import "./newBattle.scss";
-import { startTestCode } from "../../store/actions/battle.action";
+import {
+  startTestCode,
+  startTestingCode
+} from "../../store/actions/battle.action";
 import { connect } from "react-redux";
 
 type CodeState = {
@@ -84,14 +87,14 @@ const NewBattle: React.FC = (props: any) => {
         changeStep={changeStep}
         onSubmit={submitChallenge}
         step={battleState.step}
-        onTest={() => setStartTesting(true)}
+        onTest={() => props.dispatch(startTestingCode())}
       />
       <div className="form-outputs">
         <IDE
           codeStr={battleState.funcStr}
           step={battleState.step}
           updateUserAnswer={setUserAnswer}
-          isTesting={startTesting}
+          isTesting={props.isTesting}
           testUserCode={testUserCode}
         />
       </div>
@@ -100,6 +103,7 @@ const NewBattle: React.FC = (props: any) => {
 };
 
 const mapStateToProps = (state: any) => {
+  console.log(state);
   return {
     testResults: state.battle.results,
     isTesting: state.battle.testing

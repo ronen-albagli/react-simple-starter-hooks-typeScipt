@@ -40,10 +40,10 @@ export const testNewCode = (stats: boolean) => ({
   payload: stats
 });
 
-// export const startTestCode = (battleState:any) => ({
-// type: CHALLENGE_ACTION.START_TEST_NEW_CODE,
-// payload: true
-// });
+export const startTestingCode = () => ({
+  type: CHALLENGE_ACTION.START_TEST_NEW_CODE,
+  payload: true
+});
 
 export const startTestCode = (battleState: any) => {
   return (dispatch: any) => {
@@ -51,8 +51,6 @@ export const startTestCode = (battleState: any) => {
     const results = compile(battleFormmated);
     dispatch(finishTestCode(results));
   };
-  // type: CHALLENGE_ACTION.START_TEST_NEW_CODE,
-  // payload: true
 };
 
 export const finishTestCode = (results: battleResult) => ({

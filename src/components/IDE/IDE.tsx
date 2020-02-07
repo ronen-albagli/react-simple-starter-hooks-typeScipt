@@ -34,6 +34,9 @@ class IDE extends React.Component<any, any> {
 
   shouldComponentUpdate(nextProps: any, nextState: any) {
     if (nextProps !== this.props) {
+      console.log(this.props);
+      console.log(nextProps);
+
       if (this.props.isTesting !== nextProps.isTesting) {
         console.log("in", this.state.code);
         this.props.testUserCode(this.state.code);
