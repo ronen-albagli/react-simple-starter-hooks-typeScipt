@@ -62,6 +62,28 @@
       img {
         transition: transform 0.2s ease;
       }
+
+      .hidden {
+        opacity: 0;
+        height: 35px;
+        width: 35px;
+        position: absolute;
+        button {
+          height: 35px;
+          position: relative;
+          width: 1px;
+          left: -5px;
+          top: -23px;
+          div {
+            margin-right: 10px;
+            background: rgb(255, 255, 255);
+            padding: 10px;
+            border-radius: 2px;
+            position: relative;
+            left: -25px;
+          }
+        }
+      }
       &:hover {
         transform: scale(1.05);
         border-color: black;
