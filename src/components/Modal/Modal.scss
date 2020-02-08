@@ -5,20 +5,34 @@
   right: 0;
   overflow: hidden;
   position: fixed;
-  z-index: 1000;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  transition: z-index 0.5s ease;
+  &.visible {
+    z-index: 1000;
+    .overlay {
+      opacity: 1;
+    }
+    .modal {
+      top: 0;
+    }
+  }
+  &.hidden {
+    z-index: -1;
+  }
   .overlay {
     height: 100%;
     width: 100%;
     background-color: #00000087;
+    opacity: 0;
     position: absolute;
+    transition: opacity 0.5s ease;
   }
   .modal {
     height: 50%;
-    width: 35%;
+    width: 25%;
     background-color: white;
     z-index: 10001;
     border-radius: 5px;
@@ -29,5 +43,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    position: relative;
+    top: -100%;
+    transition: top 0.8s ease-in-out;
   }
 }

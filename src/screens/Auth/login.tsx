@@ -20,28 +20,12 @@ const AppLogin = (props: any) => {
     setLoginForm({ ...newState });
   };
   return (
-    <AppModal>
-      <div className="login-title">Log / Sign in To Battle</div>
+    <AppModal show={props.open} close={props.closeModal}>
+      <div className="header">
+        <div className="login-title">Log-In</div>
+        <div className="login-subtitle">Find Out Who Is The Best</div>
+      </div>
       <div className="login-content">
-        {/* <div className="with-email">
-          {Object.keys(loginForm).map((formKey: string) => (
-            <TextInput
-              label={formKey}
-              active={false}
-              name={formKey}
-              value={(loginForm as any)[formKey]}
-              change={handleChange}
-              type={
-                formKey === "password"
-                  ? "password"
-                  : formKey === "email"
-                  ? "email"
-                  : "text"
-              }
-            />
-          ))}
-        </div>
-        <div className="divider"></div> */}
         <div className="with-social">
           {["email", "password"].map((formKey: string) => (
             <TextInput
@@ -59,35 +43,47 @@ const AppLogin = (props: any) => {
               }
             />
           ))}
+
           <Button
             title={"Login"}
             fn={() => {}}
             btnStyle={"full"}
             shape={"rounded"}
             color={"danger"}
+            style={{
+              width: "100%",
+              marginLeft: 0,
+              marginTop: "50px",
+              color: "white",
+              backgroundColor: "#ff9800"
+            }}
           />
         </div>
       </div>
-      <div>OR</div>
+      <div style={{ fontWeight: "bold" }}>OR</div>
       <div className="login-social">
         <div className="title">Login with your social network</div>
         <div className="actions">
-          <img
-            style={{
-              height: props.height ? props.height : "20px",
-              margin: "10px"
-            }}
-            alt=""
-            src={fb}
-          />
-          <img
-            style={{
-              height: props.height ? props.height : "20px",
-              margin: "10px"
-            }}
-            alt=""
-            src={gl}
-          />
+          <div>
+            <img
+              style={{
+                height: props.height ? props.height : "20px",
+                margin: "10px"
+              }}
+              alt=""
+              src={fb}
+            />
+          </div>
+          <div>
+            <img
+              style={{
+                height: props.height ? props.height : "20px",
+                margin: "10px"
+              }}
+              alt=""
+              src={gl}
+            />
+          </div>
         </div>
       </div>
     </AppModal>

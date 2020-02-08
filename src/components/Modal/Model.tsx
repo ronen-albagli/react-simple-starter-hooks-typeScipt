@@ -2,8 +2,8 @@ import React from "react";
 import "./Modal.scss";
 const AppModal = (props: any) => {
   return (
-    <div className="modal-container">
-      <div className="overlay"></div>
+    <div className={`modal-container ${props.show ? "visible" : "hidden"}`}>
+      <div className="overlay" onClick={props.close}></div>
       <div className="modal">{props.children}</div>
     </div>
   );

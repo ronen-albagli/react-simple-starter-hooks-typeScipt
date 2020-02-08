@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Router,
   Route,
@@ -17,9 +17,10 @@ import AppLogin from "../screens/Auth/login";
 export const history = createHistory();
 
 const AppRouter: React.FC = (props: any) => {
+  const [isLoginOpen, setLoginOpen] = useState(false);
   return (
     <Router history={history}>
-      <AppLayout />
+      <AppLayout openModel={() => setLoginOpen(true)} />
       <div className="app-content">
         <Switch>
           <Route path="/" component={App} exact={true} />
@@ -28,7 +29,7 @@ const AppRouter: React.FC = (props: any) => {
       </div>
       <Loader show={props.showLoader} />
       <Toaster />
-      <AppLogin />
+      <AppLogin open={isLoginOpen} closeModal={() => setLoginOpen(false)} />
     </Router>
   );
 };

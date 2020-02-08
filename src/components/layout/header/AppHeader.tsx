@@ -4,7 +4,7 @@ import AppLogo from "./Logo/Logo";
 // import Avatar from "./Avatar/Avatar";
 import Button from "../../buttons/Button";
 
-const Header: React.FC = () => {
+const Header = (props: any) => {
   const listItems = ["Create", "Challenge", "Battle"];
   const renderHeaderItems = () => {
     return listItems.map((element: string) => (
@@ -25,7 +25,7 @@ const Header: React.FC = () => {
         title={"Login"}
         btnStyle={"full"}
         color={"primary"}
-        fn={() => {}}
+        fn={props.openModel}
       />
     </div>
   );
