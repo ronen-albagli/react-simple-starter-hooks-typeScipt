@@ -5,10 +5,12 @@ import { parseSecondToMin } from "../../helpers/time.helper";
 import "./newBattle.scss";
 import {
   startTestCode,
-  startTestingCode
+  startTestingCode,
+  submitNewChallenge
 } from "../../store/actions/battle.action";
 import { connect } from "react-redux";
 import TerminalIDE from "../../components/IDE/Termial";
+import { stripFunction } from "../../helpers/striper";
 
 type CodeState = {
   duration: any;
@@ -69,9 +71,18 @@ const NewBattle: React.FC = (props: any) => {
     setBattleState({ ...newState });
   };
 
-  const submitChallenge = (newBattleState: any) => {};
+  const submitChallenge = () => {
+    const newChallengeData = {
+      ...battleState.newFormState,
+      userAnswer: stripFunction(battleState.userAnswer)
+    };
+    props.dispatch(submitNewChallenge(newChallengeData));
+  };
 
   const testUserCode = (userCode: string) => {
+    const newState = { ...battleState };
+    newState.userAnswer = userCode;
+    setBattleState({ ...newState });
     props.dispatch(
       startTestCode({ ...battleState.newFormState, userAnswer: userCode })
     );

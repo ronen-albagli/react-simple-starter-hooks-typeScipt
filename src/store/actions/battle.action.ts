@@ -1,24 +1,30 @@
 import { CHALLENGE_ACTION } from "../types.d";
-import { formatBattleState } from "../../helpers/validators";
+import {
+  formatBattleState,
+  formatBattleStateToSend
+} from "../../helpers/validators";
 import { compile } from "../../helpers/complier";
 import { showLoader, hideLoader, addToasterAlert } from "./UI.actions";
-// import http from "../../agent/agent.service";
+import http from "../../agnents/agent.service";
 
-// export const insertNewChallenge = (classificationData: any) => ({
-//   type: CHALLENGE_ACTION.CREATE_NEW_CHALLENGE,
-//   payload: classificationData
-// });
+export const insertNewChallenge = (classificationData: any) => ({
+  type: CHALLENGE_ACTION.CREATE_NEW_CHALLENGE,
+  payload: classificationData
+});
 
-// export const submitNewChallenge = (data: any) => {
-//   return async (dispatch: any) => {
-//     try {
-//       const response = await http.Challenge.submitNewChallenge(data);
-//       dispatch(insertNewChallenge(response));
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
+export const submitNewChallenge = (data: any) => {
+  return async (dispatch: any) => {
+    try {
+      console.log(formatBattleStateToSend(data));
+      const response = await http.Challenge.submitNewChallenge(
+        formatBattleStateToSend(data)
+      );
+      dispatch(insertNewChallenge(response));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 
 // export const fetchChallengeAction = (challengeData: any) => {
 //   console.log("challengeData", challengeData);
@@ -52,13 +58,22 @@ export const startTestCode = (battleState: any) => {
     const battleFormated = formatBattleState(battleState);
     const results = compile(battleFormated);
     dispatch(finishTestCode(results));
-    setTimeout(() => {
-      dispatch(hideLoader());
-    }, 3000);
-    console.log("in");
-    dispatch(
-      addToasterAlert({ msg: "test msg" + new Date(), status: "success" })
-    );
+    dispatch(hideLoader());
+    if (results.correct) {
+      dispatch(
+        addToasterAlert({
+          msg: "You got it Right!, you can submit now your challenge!",
+          status: "success"
+        })
+      );
+    } else {
+      dispatch(
+        addToasterAlert({
+          msg: "Completion failed, try again,",
+          status: "error"
+        })
+      );
+    }
   };
 };
 

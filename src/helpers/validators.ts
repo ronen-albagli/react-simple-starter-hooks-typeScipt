@@ -37,3 +37,29 @@ export const formatBattleState = (battle: any) => {
     userAnswer: stripFunction(battle.userAnswer)
   };
 };
+
+export const formatBattleStateToSend = (battle: any) => {
+  return {
+    name: battle.challengeName.value,
+    difficulty: battle.difficultly.value,
+    duration: battle.duration.value,
+    description: battle.description.value,
+    paramsNames: battle.functionParams.value.split(","),
+    inputs: [
+      [
+        { value: battle.paramA1.value, type: battle.typeA1 },
+        { value: battle.paramA2.value, type: battle.typeA2 }
+      ],
+      [
+        { value: battle.paramB1.value, type: battle.typeB1 },
+        { value: battle.paramB2.value, type: battle.typeB2 }
+      ],
+      [
+        { value: battle.paramC1.value, type: battle.typeC1 },
+        { value: battle.paramC2.value, type: battle.typeC2 }
+      ]
+    ],
+    desire: [battle.desireA, battle.desireB, battle.desireC],
+    userAnswer: battle.userAnswer
+  };
+};

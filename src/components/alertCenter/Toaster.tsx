@@ -7,7 +7,7 @@ const Toaster: React.FC = (props: any) => {
   if (props.msg && props.msg.length > 0) {
     setTimeout(() => {
       props.dispatch(removeToasterAlert());
-    }, 1000);
+    }, 10000);
   }
 
   return (

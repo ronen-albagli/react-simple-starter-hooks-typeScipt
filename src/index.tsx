@@ -5,8 +5,10 @@ import * as serviceWorker from "./serviceWorker";
 import AppRouter from "./router/appRouter";
 import { Provider } from "react-redux";
 import storeConfig from "./store/store.config";
+import httpFactory from "./agnents/http.factory";
 
 export const store = storeConfig();
+export const apiRequestHandler = new httpFactory(store.dispatch);
 
 ReactDOM.render(
   <Provider store={store}>

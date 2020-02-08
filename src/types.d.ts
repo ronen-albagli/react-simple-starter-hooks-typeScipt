@@ -30,3 +30,10 @@ type toasterMessage = {
   msg: String;
   status: String;
 };
+
+interface httpFactory {
+  post: (url: string, data: any) => Promise<any>;
+  get: (url: string, data: any) => Promise<any>;
+  delete: (url: string, data?: any) => Promise<any>;
+  put: (url: string, data: string) => Promise<any>;
+}
