@@ -25,3 +25,8 @@ type battleResult = {
   runTime: String;
   codeSize: String;
 };
+
+type toasterMessage = {
+  msg: String;
+  status: String;
+};

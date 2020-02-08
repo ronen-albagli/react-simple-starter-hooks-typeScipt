@@ -1,6 +1,6 @@
 import { stripFunction } from "./striper";
 export const validateCodeInsert = (code: string, mainCode: string) => {
-  if (code == mainCode) {
+  if (code === mainCode) {
     return {
       valid: true,
       reason: ""

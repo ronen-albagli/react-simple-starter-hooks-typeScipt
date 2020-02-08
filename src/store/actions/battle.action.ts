@@ -1,6 +1,7 @@
 import { CHALLENGE_ACTION } from "../types.d";
 import { formatBattleState } from "../../helpers/validators";
 import { compile } from "../../helpers/complier";
+import { showLoader, hideLoader, addToasterAlert } from "./UI.actions";
 // import http from "../../agent/agent.service";
 
 // export const insertNewChallenge = (classificationData: any) => ({
@@ -47,9 +48,17 @@ export const startTestingCode = () => ({
 
 export const startTestCode = (battleState: any) => {
   return (dispatch: any) => {
-    const battleFormmated = formatBattleState(battleState);
-    const results = compile(battleFormmated);
+    dispatch(showLoader());
+    const battleFormated = formatBattleState(battleState);
+    const results = compile(battleFormated);
     dispatch(finishTestCode(results));
+    setTimeout(() => {
+      dispatch(hideLoader());
+    }, 3000);
+    console.log("in");
+    dispatch(
+      addToasterAlert({ msg: "test msg" + new Date(), status: "success" })
+    );
   };
 };
 

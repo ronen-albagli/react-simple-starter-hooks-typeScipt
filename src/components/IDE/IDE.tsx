@@ -8,7 +8,7 @@ import "brace/mode/html";
 import "brace/theme/xcode";
 import "brace/snippets/html";
 import "brace/ext/language_tools";
-import { stripFunction, validateUserCode } from "../../helpers/striper";
+import { stripFunction } from "../../helpers/striper";
 import { validateCodeInsert } from "../../helpers/validators";
 import "./IDE.scss";
 
@@ -34,11 +34,7 @@ class IDE extends React.Component<any, any> {
 
   shouldComponentUpdate(nextProps: any, nextState: any) {
     if (nextProps !== this.props) {
-      console.log(this.props);
-      console.log(nextProps);
-
-      if (this.props.isTesting !== nextProps.isTesting) {
-        console.log("in", this.state.code);
+      if (this.props.isTesting !== nextProps.isTesting && nextProps.isTesting) {
         this.props.testUserCode(this.state.code);
         return true;
       }
@@ -64,7 +60,7 @@ class IDE extends React.Component<any, any> {
 
   render() {
     return (
-      <div className="ide-container">
+      <div className={`ide-container ${this.props.ideKind}`}>
         <AceEditor
           mode="javascript"
           theme="monokai"

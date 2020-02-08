@@ -9,10 +9,13 @@ import createHistory from "history/createBrowserHistory";
 import App from "../App";
 import NewBattle from "../screens/new-battle/newBattle";
 import AppLayout from "../components/layout/app.layout";
+import Loader from "../components/loader/Loader";
+import { connect } from "react-redux";
+import Toaster from "../components/alertCenter/Toaster";
 
 export const history = createHistory();
 
-const AppRouter: React.FC = () => {
+const AppRouter: React.FC = (props: any) => {
   return (
     <Router history={history}>
       <AppLayout />
@@ -22,8 +25,16 @@ const AppRouter: React.FC = () => {
           <Route path="/battle/create" component={NewBattle} exact={true} />
         </Switch>
       </div>
+      <Loader show={props.showLoader} />
+      <Toaster />
     </Router>
   );
 };
 
-export default AppRouter;
+const mapStateToProps = (state: any) => {
+  return {
+    showLoader: state.UI.showLoader
+  };
+};
+
+export default connect(mapStateToProps)(AppRouter);

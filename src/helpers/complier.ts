@@ -1,17 +1,7 @@
 import sizeof from "object-sizeof";
 
 export const compile = (battle: newChallenge) => {
-  const {
-    name,
-    parameters,
-    test1,
-    test2,
-    test3,
-    desire1,
-    desire2,
-    desire3,
-    userAnswer
-  } = battle;
+  const { parameters, test1, test2, test3, userAnswer } = battle;
 
   const result: battleResult = {
     charLength: userAnswer.trim().length,
@@ -42,7 +32,7 @@ export const compile = (battle: newChallenge) => {
         result.errors = error;
       }
       const { value: desire } = (battle as any)[`desire${counter + 1}`];
-      if (answer == desire) {
+      if (answer === desire) {
         result.correct = true;
       } else {
         result.correct = false;

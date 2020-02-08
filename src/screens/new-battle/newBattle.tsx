@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import FormBattle from "../../components/forms/battleForm";
 import IDE from "../../components/IDE/IDE";
 import { parseSecondToMin } from "../../helpers/time.helper";
-import { validateCodeInsert } from "../../helpers/validators";
 import "./newBattle.scss";
 import {
   startTestCode,
   startTestingCode
 } from "../../store/actions/battle.action";
 import { connect } from "react-redux";
+import TerminalIDE from "../../components/IDE/Termial";
 
 type CodeState = {
   duration: any;
@@ -26,13 +26,10 @@ const NewBattle: React.FC = (props: any) => {
     newFormState: {}
   });
 
-  const [startTesting, setStartTesting] = useState(false);
-
   const updateChallengeCode = (newCodeState?: CodeState, userCode?: string) => {
     if (newCodeState) {
       const {
         duration: { value: duration },
-        level,
         functionParams: { value: params },
         description: { value: desc },
         challengeName: { value: funcName }
@@ -96,14 +93,16 @@ const NewBattle: React.FC = (props: any) => {
           updateUserAnswer={setUserAnswer}
           isTesting={props.isTesting}
           testUserCode={testUserCode}
+          ideKind={"code"}
         />
+
+        <TerminalIDE ideKind={"terminal"} outputObj={props.testResults} />
       </div>
     </div>
   );
 };
 
 const mapStateToProps = (state: any) => {
-  console.log(state);
   return {
     testResults: state.battle.results,
     isTesting: state.battle.testing

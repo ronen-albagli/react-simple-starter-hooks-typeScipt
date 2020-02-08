@@ -1,7 +1,7 @@
 import React from "react";
 import "../app.layout.scss";
 import AppLogo from "./Logo/Logo";
-import Avatar from "./Avatar/Avatar";
+// import Avatar from "./Avatar/Avatar";
 import Button from "../../buttons/Button";
 
 const Header: React.FC = () => {

@@ -1,4 +1,5 @@
 import { CHALLENGE_ACTION } from "./../types.d";
+
 export default (state = [], action: any) => {
   switch (action.type) {
     case CHALLENGE_ACTION.CREATE_NEW_CHALLENGE:
