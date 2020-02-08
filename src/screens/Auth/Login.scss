@@ -1,0 +1,32 @@
+@import "../../main.scss";
+.login-title {
+  font-size: 40px;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+}
+.login-content {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  .divider {
+    height: 120%;
+    border: 1px solid $orange-dark;
+  }
+  .with-email {
+    width: 40%;
+    padding: 15px;
+  }
+  .with-social {
+    width: 40%;
+    position: relative;
+    top: 15px;
+  }
+}
+.login-social {
+  .title {
+    font-weight: 100;
+  }
+}

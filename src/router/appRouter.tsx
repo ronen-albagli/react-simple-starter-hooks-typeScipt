@@ -12,6 +12,7 @@ import AppLayout from "../components/layout/app.layout";
 import Loader from "../components/loader/Loader";
 import { connect } from "react-redux";
 import Toaster from "../components/alertCenter/Toaster";
+import AppLogin from "../screens/Auth/login";
 
 export const history = createHistory();
 
@@ -27,6 +28,7 @@ const AppRouter: React.FC = (props: any) => {
       </div>
       <Loader show={props.showLoader} />
       <Toaster />
+      <AppLogin />
     </Router>
   );
 };
