@@ -48,7 +48,7 @@
     font-weight: 100;
   }
   .actions {
-    div {
+    .sa {
       transition: border-color 0.2s ease;
       border: 1px solid transparent;
       cursor: pointer;
@@ -69,6 +69,27 @@
         width: 35px;
         position: absolute;
         button {
+          display: none;
+          div {
+            margin-right: 10px;
+            background: rgb(255, 255, 255);
+            padding: 10px;
+            border-radius: 2px;
+            position: relative;
+            left: -25px;
+            display: none;
+          }
+          span {
+            display: none;
+          }
+        }
+      }
+      &:hover {
+        transform: scale(1.05);
+        border-color: black;
+        animation: changeColor 1.2s ease;
+        button {
+          display: block;
           height: 35px;
           position: relative;
           width: 1px;
@@ -82,12 +103,10 @@
             position: relative;
             left: -25px;
           }
+          span {
+            display: block;
+          }
         }
-      }
-      &:hover {
-        transform: scale(1.05);
-        border-color: black;
-        animation: changeColor 1.2s ease;
       }
     }
   }

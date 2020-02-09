@@ -13,6 +13,10 @@ import Loader from "../components/loader/Loader";
 import { connect } from "react-redux";
 import Toaster from "../components/alertCenter/Toaster";
 import AppLogin from "../screens/Auth/login";
+import {
+  userLoggedInViaSocial,
+  userLoggedOutInStart
+} from "../store/actions/auth.action";
 
 export const history = createHistory();
 
@@ -20,7 +24,7 @@ const AppRouter: React.FC = (props: any) => {
   const [isLoginOpen, setLoginOpen] = useState(false);
   return (
     <Router history={history}>
-      <AppLayout openModel={() => setLoginOpen(true)} />
+      <AppLayout openModel={() => setLoginOpen(true)} activeUser={props.user} />
       <div className="app-content">
         <Switch>
           <Route path="/" component={App} exact={true} />
@@ -29,15 +33,31 @@ const AppRouter: React.FC = (props: any) => {
       </div>
       <Loader show={props.showLoader} />
       <Toaster />
-      <AppLogin open={isLoginOpen} closeModal={() => setLoginOpen(false)} />
+      <AppLogin
+        open={isLoginOpen}
+        closeModal={() => setLoginOpen(false)}
+        loginSocial={props.login}
+        logoutSocial={props.logout}
+        isUserLoggedIn={props.user ? true : false}
+      />
     </Router>
   );
 };
 
-const mapStateToProps = (state: any) => {
+const mapDispatchToProps = (dispatch: any) => {
   return {
-    showLoader: state.UI.showLoader
+    // dispatching plain actions
+    login: (userDate: any) => dispatch(userLoggedInViaSocial(userDate)),
+    logout: (user: any) => dispatch(userLoggedOutInStart(user))
   };
 };
 
-export default connect(mapStateToProps)(AppRouter);
+const mapStateToProps = (state: any) => {
+  console.log(state);
+  return {
+    showLoader: state.UI.showLoader,
+    user: state.auth.activeUser
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppRouter);

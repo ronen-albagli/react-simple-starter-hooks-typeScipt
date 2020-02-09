@@ -3,6 +3,7 @@ import "../app.layout.scss";
 import AppLogo from "./Logo/Logo";
 // import Avatar from "./Avatar/Avatar";
 import Button from "../../buttons/Button";
+import Avatar from "./Avatar/Avatar";
 
 const Header = (props: any) => {
   const listItems = ["Create", "Challenge", "Battle"];
@@ -19,14 +20,17 @@ const Header = (props: any) => {
         <AppLogo />
         {renderHeaderItems()}
       </div>
-      {/* <Avatar /> */}
-      <Button
-        shape={"rounded"}
-        title={"Login"}
-        btnStyle={"full"}
-        color={"primary"}
-        fn={props.openModel}
-      />
+      {props.user ? (
+        <Avatar user={props.user} />
+      ) : (
+        <Button
+          shape={"rounded"}
+          title={"Login"}
+          btnStyle={"full"}
+          color={"primary"}
+          fn={props.openModel}
+        />
+      )}
     </div>
   );
 };
