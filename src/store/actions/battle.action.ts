@@ -4,8 +4,14 @@ import {
   formatBattleStateToSend
 } from "../../helpers/validators";
 import { compile } from "../../helpers/complier";
-import { showLoader, hideLoader, addToasterAlert } from "./UI.actions";
+import {
+  showLoader,
+  hideLoader,
+  addToasterAlert,
+  showLogInModal
+} from "./UI.actions";
 import http from "../../agnents/agent.service";
+import { fetchFromLocalStorage } from "../../helpers/util";
 
 export const insertNewChallenge = (classificationData: any) => ({
   type: CHALLENGE_ACTION.CREATE_NEW_CHALLENGE,
@@ -15,11 +21,15 @@ export const insertNewChallenge = (classificationData: any) => ({
 export const submitNewChallenge = (data: any) => {
   return async (dispatch: any) => {
     try {
-      console.log(formatBattleStateToSend(data));
-      const response = await http.Challenge.submitNewChallenge(
-        formatBattleStateToSend(data)
-      );
-      dispatch(insertNewChallenge(response));
+      const userToken = fetchFromLocalStorage("token");
+      if (userToken) {
+        const response = await http.Challenge.submitNewChallenge(
+          formatBattleStateToSend(data)
+        );
+        dispatch(insertNewChallenge(response));
+      } else {
+        dispatch(showLogInModal(true));
+      }
     } catch (error) {
       console.log(error);
     }

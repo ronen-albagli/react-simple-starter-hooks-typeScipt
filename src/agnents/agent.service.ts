@@ -2,6 +2,15 @@ import HTTP_CONST from "./agent.constant";
 // import _ from "lodash";
 // import { saveToLocalStorage } from './Util/Util';
 import { apiRequestHandler } from "../index";
+import { fetchFromLocalStorage } from "../helpers/util";
+
+type user = {
+  name: String;
+  picture: Object;
+  token: String;
+  email: String;
+  password?: String;
+};
 
 /**
  * Agents service to map Http request for Responsibilities.
@@ -9,26 +18,45 @@ import { apiRequestHandler } from "../index";
  * here you can manipulate the data before and after the Request.
  */
 const Auth = {
-  // login: async (user: any) => {
-  //     const { email, password } = user;
-  //     const data: any = await apiRequestHandler.post(`${HTTP_CONST.BASE_URL.DEV}${HTTP_CONST.API_ROUTES.AUTH.LOGIN}`, { email, password })
-  //     if (data) {
-  //         saveToLocalStorage({ token: data.data.token });
-  //         return User.getCurrent(email);
-  //     }
-  //     return false;
-  // }
+  login: async (user: user) => {
+    const { email, password } = user;
+    const data: any = await apiRequestHandler.post(
+      `${HTTP_CONST.BASE_URL.DEV}${HTTP_CONST.API_ROUTES.AUTH.LOGIN}`,
+      { email, password }
+    );
+    // if (data) {
+    //   saveToLocalStorage({ token: data.data.token });
+    //   return User.getCurrent(email);
+    // }
+    return false;
+  },
+  loginSocial: async (user: userSocialLogin) => {
+    try {
+      const data: any = await apiRequestHandler.post(
+        `${HTTP_CONST.BASE_URL.DEV}${HTTP_CONST.API_ROUTES.AUTH.LOGIN}`,
+        { user }
+      );
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 };
 
 const User = {
-  // getCurrent: async (email: any) => {
-  //     let user: any = await apiRequestHandler.post(`${HTTP_CONST.BASE_URL.DEV}${HTTP_CONST.API_ROUTES.USER.GET}`, { email })
-  //     if (user) {
-  //         saveToLocalStorage({ user: user.data.email });
-  //         user = _.omit(user.data, ['password', '__v'])
-  //         return user;
-  //     }
-  // }
+  getCurrentUser: async () => {
+    const userId = fetchFromLocalStorage("userId");
+    const data: any = await apiRequestHandler.get(
+      `${HTTP_CONST.BASE_URL.DEV}${HTTP_CONST.API_ROUTES.USER.GET}?id=${userId}`
+    );
+    return data;
+  },
+  getUserById: async (id: string) => {
+    const data: any = await apiRequestHandler.get(
+      `${HTTP_CONST.BASE_URL.DEV}${HTTP_CONST.API_ROUTES.AUTH.LOGIN}?id=${id}`
+    );
+    return data;
+  }
 };
 
 const Challenge = {

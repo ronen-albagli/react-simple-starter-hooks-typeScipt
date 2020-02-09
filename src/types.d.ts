@@ -37,3 +37,17 @@ interface httpFactory {
   delete: (url: string, data?: any) => Promise<any>;
   put: (url: string, data: string) => Promise<any>;
 }
+
+type userAuthData = {
+  userName?: String;
+  email: String;
+  password?: String;
+};
+
+type userSocialLogin = {
+  name?: String;
+  email: String;
+  password?: String;
+  token: string;
+  img: string;
+};

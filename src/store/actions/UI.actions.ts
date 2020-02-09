@@ -17,3 +17,8 @@ export const removeToasterAlert = (msgId?: Number) => ({
   type: UI_ACTIONS.REMOVE_TOASTER_ALERT,
   payload: msgId
 });
+
+export const showLogInModal = (status: Boolean) => ({
+  type: UI_ACTIONS.SHOW_LOGIN,
+  payload: status
+});

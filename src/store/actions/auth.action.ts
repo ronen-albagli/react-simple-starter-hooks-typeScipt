@@ -1,21 +1,23 @@
+import {
+  saveToLocalStorage,
+  fetchFromLocalStorage
+} from "./../../helpers/util";
 import { AUTH_ACTIONS } from "../types.d";
 import { addToasterAlert } from "./UI.actions";
+import http from "../../agnents/agent.service";
 
-type userAuthData = {
-  userName?: String;
-  email: String;
-  password?: String;
+export const userLoggedInStart = (userData: userSocialLogin) => {
+  return async (dispatch: any) => {
+    const { data: userResponse } = await http.Auth.loginSocial(userData);
+    saveToLocalStorage("token", userResponse.token);
+    saveToLocalStorage("userId", userResponse._id);
+
+    dispatch({
+      type: AUTH_ACTIONS.LOG_IN,
+      payload: userResponse
+    });
+  };
 };
-
-type userSocialLogin = {
-  name?: String;
-  email: String;
-  password?: String;
-  token: string;
-  img: string;
-};
-
-export const userLoggedInStart = (userData: userAuthData) => {};
 
 export const userLoggedInViaSocial = (userData: userSocialLogin) => {
   return (dispatch: any) => {
@@ -28,6 +30,17 @@ export const userLoggedInViaSocial = (userData: userSocialLogin) => {
     dispatch({
       type: AUTH_ACTIONS.LOG_IN,
       payload: userData
+    });
+  };
+};
+
+export const checkIfUserStillConnected = () => {
+  return async (dispatch: any) => {
+    const { data: userResponse } = await http.User.getCurrentUser();
+    console.log("userResponse", userResponse);
+    dispatch({
+      type: AUTH_ACTIONS.LOG_IN,
+      payload: userResponse
     });
   };
 };

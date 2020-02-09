@@ -8,7 +8,12 @@ const Avatar = (props: any) => {
         <img
           style={{ height: props.height ? props.height : "35px" }}
           alt=""
-          src={props.user && props.user.picture.data.url}
+          src={
+            props.user &&
+            props.user.picture &&
+            props.user.picture.data &&
+            props.user.picture.data.url
+          }
         />
       </div>
     </div>

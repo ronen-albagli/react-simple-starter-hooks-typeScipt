@@ -15,16 +15,20 @@ import Toaster from "../components/alertCenter/Toaster";
 import AppLogin from "../screens/Auth/login";
 import {
   userLoggedInViaSocial,
-  userLoggedOutInStart
+  userLoggedOutInStart,
+  userLoggedInStart
 } from "../store/actions/auth.action";
+import { showLogInModal } from "../store/actions/UI.actions";
 
 export const history = createHistory();
 
 const AppRouter: React.FC = (props: any) => {
-  const [isLoginOpen, setLoginOpen] = useState(false);
   return (
     <Router history={history}>
-      <AppLayout openModel={() => setLoginOpen(true)} activeUser={props.user} />
+      <AppLayout
+        openModel={() => props.showLogin(true)}
+        activeUser={props.user}
+      />
       <div className="app-content">
         <Switch>
           <Route path="/" component={App} exact={true} />
@@ -34,8 +38,8 @@ const AppRouter: React.FC = (props: any) => {
       <Loader show={props.showLoader} />
       <Toaster />
       <AppLogin
-        open={isLoginOpen}
-        closeModal={() => setLoginOpen(false)}
+        open={props.showLogInScreen}
+        closeModal={() => props.showLogin(false)}
         loginSocial={props.login}
         logoutSocial={props.logout}
         isUserLoggedIn={props.user ? true : false}
@@ -47,16 +51,17 @@ const AppRouter: React.FC = (props: any) => {
 const mapDispatchToProps = (dispatch: any) => {
   return {
     // dispatching plain actions
-    login: (userDate: any) => dispatch(userLoggedInViaSocial(userDate)),
+    showLogin: (status: Boolean) => dispatch(showLogInModal(status)),
+    login: (userDate: any) => dispatch(userLoggedInStart(userDate)),
     logout: (user: any) => dispatch(userLoggedOutInStart(user))
   };
 };
 
 const mapStateToProps = (state: any) => {
-  console.log(state);
   return {
     showLoader: state.UI.showLoader,
-    user: state.auth.activeUser
+    user: state.auth.activeUser,
+    showLogInScreen: state.UI.showLoginModal
   };
 };
 

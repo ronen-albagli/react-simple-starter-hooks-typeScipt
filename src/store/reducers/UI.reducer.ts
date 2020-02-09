@@ -20,6 +20,9 @@ export default (state: any = [], action: any) => {
       newMsg.splice(action.payload, 1);
       return { ...state, messages: [...newMsg] };
     }
+
+    case UI_ACTIONS.SHOW_LOGIN:
+      return { ...state, showLoginModal: action.payload };
     default:
       return { ...state };
   }

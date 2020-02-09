@@ -6,12 +6,12 @@ export default {
 
   API_ROUTES: {
     USER: {
-      INSERT: "api/user/insert",
-      GET: "api/user/get"
+      INSERT: "/api/user/insert",
+      GET: "/api/user"
     },
 
     AUTH: {
-      LOGIN: "api/user/login"
+      LOGIN: "/api/user/login"
     },
     GEO: {
       INSERT: ""
