@@ -1,0 +1,140 @@
+.simple-table-container {
+  height: 668px;
+  border: 1px solid #545559;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  max-height: 800px;
+  margin-top: 25px;
+  border-radius: 5px;
+  color: #545559;
+  border-right: 1px solid #908f91;
+  border-left: 1px solid #908f91;
+
+  .table-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+    border-bottom: 1px solid #545559;
+    height: 35px;
+    cursor: pointer;
+    transition: border-bottom 0.3s ease, color 0.3s ease;
+    text-transform: capitalize;
+    &:hover {
+      color: #908f91;
+      border-bottom: 1px solid #908f91;
+    }
+    &:last-child {
+      border: none;
+    }
+    .right {
+      display: flex;
+      justify-content: space-between;
+      width: 25%;
+      div {
+        border-left: 1px solid #545559;
+        width: 33%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+      }
+    }
+    .left {
+      width: 75%;
+      display: flex;
+      align-items: center;
+      a {
+        text-decoration: none !important;
+        color: inherit !important;
+        //   color:
+      }
+    }
+    &.table-header {
+      color: #908f91;
+      border-top: 1px solid #908f91;
+      border-bottom: 1px solid #908f91;
+    }
+  }
+  .table-pagination {
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-bottom: 1px solid #908f91;
+    border-top: 1px solid #908f91;
+
+    .pages {
+      display: flex;
+      width: 150px;
+      justify-content: space-between;
+      align-items: center;
+      .current-page {
+        font-weight: bold;
+        font-size: 20px;
+      }
+      .table-btn {
+        position: relative;
+        height: 18px;
+        width: 20px;
+        border: 1px solid #545559;
+        border-radius: 3px;
+        &.right {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          &:after {
+            content: "";
+            position: absolute;
+            height: 7px;
+            width: 7px;
+            border-right: 2px solid #545559;
+            border-top: 2px solid #545559;
+            transform: rotate(45deg);
+            display: flex;
+            left: 4px;
+            transition: border 0.3s ease;
+          }
+        }
+        &.left {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          &::after {
+            content: "";
+            position: absolute;
+            height: 7px;
+            width: 7px;
+            border-right: 2px solid #545559;
+            border-top: 2px solid #545559;
+            transform: rotate(-135deg);
+            display: flex;
+            left: 6px;
+            transition: border 0.3s ease;
+          }
+        }
+        &:hover {
+          border: 1px solid #908f91;
+          &.left {
+            &:after {
+              border-right: 2px solid #908f91;
+              border-top: 2px solid #908f91;
+            }
+          }
+          &.right {
+            &:after {
+              border-right: 2px solid #908f91;
+              border-top: 2px solid #908f91;
+            }
+          }
+        }
+      }
+    }
+  }
+}

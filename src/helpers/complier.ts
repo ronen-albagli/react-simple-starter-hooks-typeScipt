@@ -32,7 +32,7 @@ export const compile = (battle: newChallenge) => {
         result.errors = error;
       }
       const { value: desire } = (battle as any)[`desire${counter + 1}`];
-      if (answer === desire) {
+      if (answer == desire) {
         result.correct = true;
       } else {
         result.correct = false;

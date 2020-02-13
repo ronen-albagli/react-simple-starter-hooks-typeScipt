@@ -19,6 +19,9 @@ import {
   userLoggedInStart
 } from "../store/actions/auth.action";
 import { showLogInModal } from "../store/actions/UI.actions";
+import ChallengeListPage from "../screens/challenge/challengeListPage/ChallengeListPage";
+import AppFooter from "../components/AppFooter/AppFooter";
+import Challenge from "../screens/challenge/challenge/Challenge";
 
 export const history = createHistory();
 
@@ -33,8 +36,15 @@ const AppRouter: React.FC = (props: any) => {
         <Switch>
           <Route path="/" component={App} exact={true} />
           <Route path="/battle/create" component={NewBattle} exact={true} />
+          <Route
+            path="/challenge/list"
+            component={ChallengeListPage}
+            exact={true}
+          />
+          <Route path={`/challenge/:id`} component={Challenge} />
         </Switch>
       </div>
+      <AppFooter />
       <Loader show={props.showLoader} />
       <Toaster />
       <AppLogin

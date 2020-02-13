@@ -15,7 +15,11 @@ class API implements httpFactory {
 
   get = async (url: string) => {
     try {
-      return await axios.get(url);
+      return await axios.get(url, {
+        headers: {
+          "x-auth-token": localStorage.getItem("token")
+        }
+      });
     } catch (error) {
       return error;
     }
@@ -24,8 +28,11 @@ class API implements httpFactory {
   post = async (url: string, data: any) => {
     try {
       this.dispatch(showLoader());
-      const response = await axios.post(url, data);
-      console.log("ininnnn", response);
+      const response = await axios.post(url, data, {
+        headers: {
+          "x-auth-token": localStorage.getItem("token")
+        }
+      });
       this.dispatch(hideLoader());
       return response;
     } catch (error) {

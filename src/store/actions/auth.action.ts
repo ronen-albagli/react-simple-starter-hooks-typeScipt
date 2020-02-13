@@ -9,7 +9,9 @@ import http from "../../agnents/agent.service";
 export const userLoggedInStart = (userData: userSocialLogin) => {
   return async (dispatch: any) => {
     const { data: userResponse } = await http.Auth.loginSocial(userData);
-    saveToLocalStorage("token", userResponse.token);
+    saveToLocalStorage("fbtoken", userResponse.token);
+    saveToLocalStorage("token", userResponse.appToken);
+    console.log("userResponse.appToken", userResponse.appToken);
     saveToLocalStorage("userId", userResponse._id);
 
     dispatch({

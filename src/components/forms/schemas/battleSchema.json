@@ -93,30 +93,30 @@
     "display": "first",
     "type": "text",
     "value": "",
-    "name": "paramB1"
+    "name": "paramC1"
   },
   "typeC1": {
     "display": "type",
     "type": "ddl",
     "value": "",
-    "name": "typeB1"
+    "name": "typeC1"
   },
   "paramC2": {
     "display": "second",
     "type": "text",
     "value": "",
-    "name": "paramB2"
+    "name": "paramC2"
   },
   "typeC2": {
     "display": "type",
     "type": "ddl",
     "value": "",
-    "name": "typeB2"
+    "name": "typeC2"
   },
   "desireC": {
     "display": "desire",
     "type": "text",
     "value": "",
-    "name": "desireB"
+    "name": "desireC"
   }
 }

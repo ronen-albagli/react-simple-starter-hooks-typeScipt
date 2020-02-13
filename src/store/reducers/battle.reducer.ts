@@ -11,7 +11,7 @@ export default (state = [], action: any) => {
     case CHALLENGE_ACTION.FINISH_TEST_NEW_CODE:
       return { ...state, testing: false, results: action.payload };
     case CHALLENGE_ACTION.GET_CHALLENGE: {
-      return { ...state, ...action.payload };
+      return { ...state, currentChallenge: action.payload };
     }
     default:
       return { ...state };

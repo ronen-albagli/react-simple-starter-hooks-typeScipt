@@ -63,7 +63,7 @@ const Challenge = {
   submitNewChallenge: async (challenge: any) => {
     const newChallenge: any = await apiRequestHandler.post(
       `${HTTP_CONST.BASE_URL.DEV}${HTTP_CONST.API_ROUTES.Challenge.newChallenge}`,
-      { challenge, user: {} }
+      { challenge, userId: fetchFromLocalStorage("userId") }
     );
   },
   getChallenge: async (challengeId: string) => {
