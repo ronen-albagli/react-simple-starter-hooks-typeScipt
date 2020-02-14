@@ -45,6 +45,7 @@ const AppLogin = (props: any) => {
         <div className="with-social">
           {["email", "password"].map((formKey: string) => (
             <TextInput
+              key={formKey}
               label={formKey}
               active={false}
               name={formKey}

@@ -25,7 +25,7 @@ const Header = (props: any) => {
         <Link to={element.route}>{element.main}</Link>
         <div className="header-ddl">
           {element.children.map((child: any) => (
-            <div key={child} className="header-ddl-element">
+            <div key={child.name} className="header-ddl-element">
               <Link to={child.route}>{child.name}</Link>
             </div>
           ))}

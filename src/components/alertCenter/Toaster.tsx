@@ -14,7 +14,7 @@ const Toaster: React.FC = (props: any) => {
     <div className="toaster-container">
       {props.msg &&
         props.msg.map((alert: toasterMessage, index: number) => (
-          <div className={`toaster-box ${alert.status}`}>
+          <div key={index} className={`toaster-box ${alert.status}`}>
             <div className="toaster-msg">{alert.msg} </div>
             <div
               className="close"

@@ -32,9 +32,8 @@ const SimpleTable = (props: tableItem) => {
         </div>
       </div>
       {pages[currentPage - 1].map((item: tableItemDetail) => (
-        <div className="table-item">
+        <div key={item.name} className="table-item">
           <div className={"left"}>
-            {/* <Link to={`/challenge/${item.id}`}>{item.name}</Link> */}
             <Link to={`/challenge/5e45329a39b327402d403457`}>{item.name}</Link>
           </div>
           <div className={"right"}>

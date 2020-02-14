@@ -31,7 +31,9 @@ const AvatarDDL = () => {
   return (
     <div className="avatar-ddl">
       {list.map((element: any) => (
-        <Link to={element.route}>{element.name}</Link>
+        <Link key={element.name} to={element.route}>
+          {element.name}
+        </Link>
       ))}
     </div>
   );

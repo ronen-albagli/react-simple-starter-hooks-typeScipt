@@ -13,6 +13,17 @@ type newChallenge = {
   userAnswer: String;
 };
 
+type challenge = {
+  inputs: Array<Array<any>>;
+  paramsNames: Array<String>;
+  desire: Array<any>;
+  userId: any;
+  difficulty: String;
+  duration: String;
+  description: String;
+  name: String;
+};
+
 type testCaseInput = {
   value: string;
   type: any;

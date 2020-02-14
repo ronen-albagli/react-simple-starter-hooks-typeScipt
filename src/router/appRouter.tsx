@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Router,
   Route,
@@ -14,7 +14,6 @@ import { connect } from "react-redux";
 import Toaster from "../components/alertCenter/Toaster";
 import AppLogin from "../screens/Auth/login";
 import {
-  userLoggedInViaSocial,
   userLoggedOutInStart,
   userLoggedInStart
 } from "../store/actions/auth.action";

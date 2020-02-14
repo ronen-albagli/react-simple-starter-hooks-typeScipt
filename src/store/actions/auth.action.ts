@@ -1,7 +1,4 @@
-import {
-  saveToLocalStorage,
-  fetchFromLocalStorage
-} from "./../../helpers/util";
+import { saveToLocalStorage } from "./../../helpers/util";
 import { AUTH_ACTIONS } from "../types.d";
 import { addToasterAlert } from "./UI.actions";
 import http from "../../agnents/agent.service";
@@ -11,7 +8,6 @@ export const userLoggedInStart = (userData: userSocialLogin) => {
     const { data: userResponse } = await http.Auth.loginSocial(userData);
     saveToLocalStorage("fbtoken", userResponse.token);
     saveToLocalStorage("token", userResponse.appToken);
-    console.log("userResponse.appToken", userResponse.appToken);
     saveToLocalStorage("userId", userResponse._id);
 
     dispatch({
@@ -39,7 +35,6 @@ export const userLoggedInViaSocial = (userData: userSocialLogin) => {
 export const checkIfUserStillConnected = () => {
   return async (dispatch: any) => {
     const { data: userResponse } = await http.User.getCurrentUser();
-    console.log("userResponse", userResponse);
     dispatch({
       type: AUTH_ACTIONS.LOG_IN,
       payload: userResponse

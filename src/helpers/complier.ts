@@ -32,6 +32,7 @@ export const compile = (battle: newChallenge) => {
         result.errors = error;
       }
       const { value: desire } = (battle as any)[`desire${counter + 1}`];
+      // eslint-disable-next-line
       if (answer == desire) {
         result.correct = true;
       } else {

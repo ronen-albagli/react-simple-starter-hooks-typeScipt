@@ -24,11 +24,11 @@ const Auth = {
       `${HTTP_CONST.BASE_URL.DEV}${HTTP_CONST.API_ROUTES.AUTH.LOGIN}`,
       { email, password }
     );
+    return data;
     // if (data) {
     //   saveToLocalStorage({ token: data.data.token });
     //   return User.getCurrent(email);
     // }
-    return false;
   },
   loginSocial: async (user: userSocialLogin) => {
     try {
@@ -65,6 +65,7 @@ const Challenge = {
       `${HTTP_CONST.BASE_URL.DEV}${HTTP_CONST.API_ROUTES.Challenge.newChallenge}`,
       { challenge, userId: fetchFromLocalStorage("userId") }
     );
+    return newChallenge;
   },
   getChallenge: async (challengeId: string) => {
     return await apiRequestHandler.get(
