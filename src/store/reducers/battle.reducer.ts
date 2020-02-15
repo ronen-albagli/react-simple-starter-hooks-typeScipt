@@ -10,9 +10,9 @@ export default (state = [], action: any) => {
       return { ...state, testing: action.payload };
     case CHALLENGE_ACTION.FINISH_TEST_NEW_CODE:
       return { ...state, testing: false, results: action.payload };
-    case CHALLENGE_ACTION.GET_CHALLENGE: {
+    case CHALLENGE_ACTION.CLEAR_CHALLENGE:
+    case CHALLENGE_ACTION.GET_CHALLENGE:
       return { ...state, currentChallenge: action.payload };
-    }
     default:
       return { ...state };
   }

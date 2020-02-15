@@ -9,7 +9,9 @@
     height: 70px;
   }
   .challenge-interface {
-    .editor {
+    display: flex;
+    justify-content: space-between;
+    .right-section {
       height: 800px;
       width: 50%;
 
@@ -19,6 +21,26 @@
         height: 100px;
         margin: 15px 0px;
         justify-content: space-between;
+      }
+      .ide-container {
+        height: 650px;
+        margin: 15px 0;
+      }
+      .actions-btn {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+    .left-section {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin: 15px;
+      .challenge-terminal {
+        height: 40%;
+        .terminal {
+          height: 100%;
+        }
       }
     }
   }

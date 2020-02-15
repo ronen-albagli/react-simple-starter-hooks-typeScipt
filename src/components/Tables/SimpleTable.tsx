@@ -31,8 +31,8 @@ const SimpleTable = (props: tableItem) => {
           <div>Level</div>
         </div>
       </div>
-      {pages[currentPage - 1].map((item: tableItemDetail) => (
-        <div key={item.name} className="table-item">
+      {pages[currentPage - 1].map((item: tableItemDetail, index: number) => (
+        <div key={index} className="table-item">
           <div className={"left"}>
             <Link to={`/challenge/5e45329a39b327402d403457`}>{item.name}</Link>
           </div>

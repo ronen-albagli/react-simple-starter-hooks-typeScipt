@@ -20,6 +20,7 @@ type battleIDEProps = {
 const BattleIDE = (props: battleIDEProps) => {
   const [code, setCode] = useState("");
   const { challengeStr } = props;
+
   return (
     <AceEditor
       mode="javascript"

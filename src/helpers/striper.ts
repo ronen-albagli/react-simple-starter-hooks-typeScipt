@@ -31,3 +31,15 @@ export const validateUserCode = (
     msg: ""
   };
 };
+
+export const validateV2 = (userCode: String, intialCode: String) => {
+  const codeStriped = stripFunction(userCode);
+  const t = userCode.replace(codeStriped, "\n\n\n   ");
+  if (t == intialCode) {
+    return {
+      status: true,
+      msg: ""
+    };
+  }
+  return { status: false, msg: "You Can not change the main function props" };
+};

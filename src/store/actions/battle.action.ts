@@ -37,9 +37,8 @@ export const submitNewChallenge = (data: any) => {
 };
 
 export const fetchChallengeAction = (challengeData: any) => {
-  console.log("challengeData", challengeData);
   return {
-    type: CHALLENGE_ACTION.GET_CHALLENGE,
+    type: CHALLENGE_ACTION.CLEAR_CHALLENGE,
     payload: challengeData
   };
 };
@@ -47,11 +46,16 @@ export const fetchChallengeAction = (challengeData: any) => {
 export const getChallenge = (challengeId: string) => {
   return async (dispatch: any) => {
     const { data: challenge } = await http.Challenge.getChallenge(challengeId);
-    console.log("before", challenge);
     dispatch(fetchChallengeAction(challenge));
   };
 };
 
+export const clearChallenge = () => {
+  return {
+    type: CHALLENGE_ACTION.CLEAR_CHALLENGE,
+    payload: {}
+  };
+};
 export const testNewCode = (stats: boolean) => ({
   type: CHALLENGE_ACTION.TEST_NEW_CODE,
   payload: stats
