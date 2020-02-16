@@ -2,20 +2,22 @@
   display: flex;
   justify-content: space-between;
   height: 100%;
-
+  align-items: center;
   .form-outputs {
-    height: 100%;
+    height: calc(85% + 68px);
     width: 45%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    min-height: 840px;
   }
 }
 
-@media only screen and (min-width: 2000px) {
+@media only screen and (max-width: 1400px) {
   .new-battle-container {
+    align-items: unset;
     .form-outputs {
-      height: 100%;
+      height: calc(85% + 88px);
       width: 50%;
       display: flex;
       justify-content: space-between;

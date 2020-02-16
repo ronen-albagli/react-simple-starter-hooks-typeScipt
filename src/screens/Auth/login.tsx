@@ -117,18 +117,6 @@ const AppLogin = (props: any) => {
             />
           </div>
         </div>
-        {/* <GoogleLogin
-          clientId="40990008904-4l7j8fd6tulggksmfu2ghll2lk5mtfid.apps.googleusercontent.com" //CLIENTID NOT CREATED YET
-          buttonText="LOGIN WITH GOOGLE"
-          onSuccess={responseGoogle}
-          onFailure={responseGoogle}
-        />
-
-        <FacebookLogin
-          appId="539926940215177" //APP ID NOT CREATED YET
-          fields="name,email,picture"
-          callback={responseFacebook}
-        /> */}
       </div>
     </AppModal>
   );

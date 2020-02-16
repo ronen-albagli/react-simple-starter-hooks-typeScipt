@@ -1,11 +1,13 @@
-// $orange: #ff9800;
-// $orange-dark: #ff5722;
-// $red-light: #e91e63;
-// $dark-bg: #15191f;
-// $semi-dark-bg: #15191f;
-// $blue: #00b2ef;
+$orange: #ff9800;
+$orange-dark: #ff5722;
+$red-light: #e91e63;
+$dark-bg: #15191f;
+$semi-dark-bg: #15191f;
+$blue: #00b2ef;
 
 $light-green: #4caf50ab;
+
+$orange-1: #ff9800;
 
 $orange: #faf6f2;
 $orange-dark: #a7a6a5;
@@ -20,3 +22,7 @@ $red-danger: #e91e63;
 $font-size-title: 36px;
 $font-size-subtitle: 24px;
 $font-size-regular: 18px;
+
+.ace_editor.ace_autocomplete {
+  height: 100px;
+}

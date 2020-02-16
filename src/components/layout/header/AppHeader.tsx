@@ -35,21 +35,25 @@ const Header = (props: any) => {
   };
   return (
     <div className="app-header">
-      <div className="header-right">
-        <AppLogo />
-        {renderHeaderItems()}
+      <div className="header-elements">
+        <div className="header-right">
+          <Link style={{ height: "100%" }} to="/">
+            <AppLogo />
+          </Link>
+          {renderHeaderItems()}
+        </div>
+        {props.user ? (
+          <Avatar user={props.user} />
+        ) : (
+          <Button
+            shape={"rounded"}
+            title={"Login"}
+            btnStyle={"full"}
+            color={"primary"}
+            fn={props.openModel}
+          />
+        )}
       </div>
-      {props.user ? (
-        <Avatar user={props.user} />
-      ) : (
-        <Button
-          shape={"rounded"}
-          title={"Login"}
-          btnStyle={"full"}
-          color={"primary"}
-          fn={props.openModel}
-        />
-      )}
     </div>
   );
 };

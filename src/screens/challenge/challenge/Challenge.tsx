@@ -128,7 +128,7 @@ class Challenge extends React.Component<any, any> {
             </div>
           </div>
           <div className="left-section">
-            <Box height={"55%"} width={"600px"}></Box>
+            <Box height={"55%"}></Box>
             <div className="challenge-terminal">
               <TerminalIDE ideKind={"terminal"} outputObj={""} />
             </div>

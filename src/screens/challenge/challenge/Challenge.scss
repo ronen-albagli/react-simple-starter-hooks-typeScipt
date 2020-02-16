@@ -1,6 +1,9 @@
 @import "../../../main.scss";
 
 .challenge-container {
+  height: 100%;
+  overflow: hidden;
+
   .challenge-title {
     color: $text-color;
     font-size: $font-size-title;
@@ -10,10 +13,10 @@
   }
   .challenge-interface {
     display: flex;
+    height: 95%;
     justify-content: space-between;
     .right-section {
-      height: 800px;
-      width: 50%;
+      width: 60%;
 
       .challenge-boxes {
         display: flex;
@@ -23,8 +26,8 @@
         justify-content: space-between;
       }
       .ide-container {
-        height: 650px;
-        margin: 15px 0;
+        margin: 25px 0;
+        height: 78%;
       }
       .actions-btn {
         display: flex;
@@ -36,11 +39,46 @@
       flex-direction: column;
       justify-content: space-between;
       margin: 15px;
+      width: 35%;
+      height: 87%;
       .challenge-terminal {
         height: 40%;
         .terminal {
           height: 100%;
         }
+      }
+    }
+  }
+}
+
+@media only screen and (max-height: 1400px) {
+  .challenge-container {
+    .challenge-interface {
+      .right-section {
+        .ide-container {
+          margin: 25px 0;
+          height: 75%;
+        }
+      }
+      .left-section {
+        height: 90%;
+      }
+    }
+  }
+}
+
+@media only screen and (max-height: 1200px) {
+  .challenge-container {
+    .challenge-interface {
+      height: 88%;
+      .right-section {
+        .ide-container {
+          margin: 25px 0;
+          height: 75%;
+        }
+      }
+      .left-section {
+        height: 90%;
       }
     }
   }

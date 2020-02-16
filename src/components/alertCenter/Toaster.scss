@@ -4,7 +4,7 @@
   position: absolute;
   bottom: 0;
   right: 0;
-  width: 45%;
+  width: 20%;
   display: flex;
   flex-direction: column-reverse;
   .toaster-box {
@@ -79,5 +79,11 @@
   to {
     opacity: 1;
     right: 0;
+  }
+}
+
+@media only screen and (max-width: 1880px) {
+  .toaster-container {
+    width: 30%;
   }
 }
