@@ -50,3 +50,105 @@
     max-height: 650px;
   }
 }
+
+.intro-modal {
+  width: 100%;
+  position: relative;
+  height: 100%;
+  .intro-background {
+    flex-direction: column;
+    width: 100%;
+    /* top: 0; */
+    /* left: 0; */
+    /* right: 0; */
+    /* border: 0; */
+    /* align-items: center; */
+    justify-content: space-between;
+    .top {
+      position: absolute;
+      top: 0;
+      height: 60%;
+      background-color: white;
+      width: 100%;
+      .left {
+        display: flex;
+        justify-content: space-evenly;
+        position: absolute;
+        bottom: 0;
+        width: 30%;
+        .line {
+          position: relative;
+          bottom: -45px;
+          width: 30px;
+          background-color: white;
+          z-index: 100;
+          border-radius: 50px;
+
+          &:nth-child(1) {
+            height: 60px;
+            // animation: growInOut 2s infinite;
+          }
+          &:nth-child(2) {
+            height: 120px;
+            // animation: growInOut 5s infinite 1s;
+          }
+          &:nth-child(3) {
+            height: 80px;
+            // animation: growInOut 2s infinite;
+          }
+        }
+      }
+      .right {
+        display: flex;
+        justify-content: space-evenly;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 40%;
+        .line {
+          position: relative;
+          bottom: -45px;
+          width: 30px;
+          background-color: white;
+          z-index: 100;
+          border-radius: 50px;
+
+          &:nth-child(1) {
+            height: 60px;
+            // animation: growInOut 2s infinite;
+          }
+          &:nth-child(2) {
+            height: 30px;
+            // animation: growInOut 5s infinite 10s;
+          }
+          &:nth-child(3) {
+            height: 80px;
+          }
+          // &div {
+          //   animation: growInOut 2s infinite;
+          // }
+        }
+      }
+    }
+    .bottom {
+      position: absolute;
+      bottom: 0;
+      height: 40%;
+      background-color: #2196f3;
+      width: 100%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+  }
+}
+
+@keyframes growInOut {
+  0%,
+  100% {
+    height: 100px;
+  }
+  50% {
+    height: 300px;
+  }
+}

@@ -4,7 +4,10 @@ const AppModal = (props: any) => {
   return (
     <div className={`modal-container ${props.show ? "visible" : "hidden"}`}>
       <div className="overlay" onClick={props.close}></div>
-      <div className="modal">{props.children}</div>
+
+      <div style={props.style} className="modal">
+        {props.children}
+      </div>
     </div>
   );
 };

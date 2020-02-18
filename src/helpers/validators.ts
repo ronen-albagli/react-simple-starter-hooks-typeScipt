@@ -63,3 +63,31 @@ export const formatBattleStateToSend = (battle: any) => {
     userAnswer: battle.userAnswer
   };
 };
+
+export const convertChallengeBeforeTesting = (challenge: any) => {
+  const {
+    inputs,
+    paramsNames,
+    desire,
+    description,
+    name,
+    difficulty,
+    userAnswer,
+    duration
+  } = challenge;
+  const formattedChallenge: newChallenge = {
+    name,
+    difficulty,
+    description,
+    duration,
+    userAnswer: stripFunction(userAnswer),
+    parameters: paramsNames.join(","),
+    test1: inputs[0],
+    test2: inputs[1],
+    test3: inputs[2],
+    desire1: desire[0],
+    desire2: desire[1],
+    desire3: desire[2]
+  };
+  return formattedChallenge;
+};

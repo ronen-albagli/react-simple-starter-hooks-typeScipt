@@ -12,16 +12,15 @@ class Timer extends React.Component<any, any> {
     timerPause: false
   };
 
-  componentDidMount() {
-    // console.log(this.props.duration);
-    // this.setState(() => ({ time: this.props.duration }));
-    // this.props.dispatch(startTimer());
-  }
+  componentDidMount() {}
 
   shouldComponentUpdate(nextProps: any, nextState: any) {
     if (nextProps !== this.props) {
-      if (!this.props.duration && nextProps.duration) {
-        console.log(nextProps.duration);
+      if (
+        !this.props.duration &&
+        nextProps.duration &&
+        this.props.startTimer !== nextProps.startTimer
+      ) {
         this.setState(() => ({ time: this.props.duration }));
         this.props.dispatch(startTimer());
       }

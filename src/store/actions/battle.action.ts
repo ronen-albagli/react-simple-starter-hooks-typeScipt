@@ -3,7 +3,7 @@ import {
   formatBattleState,
   formatBattleStateToSend
 } from "../../helpers/validators";
-import { compile } from "../../helpers/complier";
+import { compile, compileChallenge } from "../../helpers/complier";
 import {
   showLoader,
   hideLoader,
@@ -66,10 +66,18 @@ export const startTestingCode = () => ({
   payload: true
 });
 
-export const startTestCode = (battleState: any) => {
+export const testingChallenge = (challenge: any) => {
+  return (dispatch: any) => {
+    compileChallenge(challenge);
+  };
+};
+
+export const startTestCode = (battleState: any, formattedNeeded = true) => {
   return (dispatch: any) => {
     dispatch(showLoader());
-    const battleFormated = formatBattleState(battleState);
+    const battleFormated = formattedNeeded
+      ? formatBattleState(battleState)
+      : battleState;
     const results = compile(battleFormated);
     dispatch(finishTestCode(results));
     dispatch(hideLoader());

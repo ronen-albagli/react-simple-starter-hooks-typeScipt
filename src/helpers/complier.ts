@@ -1,5 +1,9 @@
 import sizeof from "object-sizeof";
 
+export const compileChallenge = (challenge: any) => {
+  console.log(challenge);
+};
+
 export const compile = (battle: newChallenge) => {
   const { parameters, test1, test2, test3, userAnswer } = battle;
 
@@ -10,6 +14,7 @@ export const compile = (battle: newChallenge) => {
     runTime: "0",
     codeSize: ""
   };
+  console.log("parameters", battle);
   const paramsArr: Array<string> = parameters.split(",");
   // eslint-disable-next-line no-new-func
   const testFunc: Function = new Function(
@@ -22,11 +27,12 @@ export const compile = (battle: newChallenge) => {
     if (inputArr.length) {
       let answer;
       try {
-        const StartTime = new Date();
+        const startTime = new Date();
         answer = testFunc(...inputArr);
+
         const endTime = new Date();
         result.runTime = ` ${new Date(
-          (endTime as any) - (StartTime as any)
+          (endTime as any) - (startTime as any)
         ).getMilliseconds()} Milliseconds`;
       } catch (error) {
         result.errors = error;

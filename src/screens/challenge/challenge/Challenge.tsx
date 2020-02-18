@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import {
   getChallenge,
-  clearChallenge
+  clearChallenge,
+  testingChallenge,
+  startTestCode
 } from "../../../store/actions/battle.action";
 import BattleIDE from "../../../components/IDE/battleIDE";
 import "./Challenge.scss";
@@ -13,11 +15,15 @@ import Button from "../../../components/buttons/Button";
 import TerminalIDE from "../../../components/IDE/Termial";
 import { validateUserCode, validateV2 } from "../../../helpers/striper";
 import { addToasterAlert } from "../../../store/actions/UI.actions";
+import { convertChallengeBeforeTesting } from "../../../helpers/validators";
+import AppModal from "../../../components/Modal/Model";
+import ChallengeIntroModal from "../../../components/Modal/ChallengeIntro";
 
 class Challenge extends React.Component<any, any> {
   state = {
     codeStr: "",
-    initialCode: ""
+    initialCode: "",
+    start: false
   };
 
   componentDidMount() {
@@ -41,6 +47,10 @@ class Challenge extends React.Component<any, any> {
     }
     return false;
   }
+
+  startChallenge = () => {
+    this.setState(() => ({ start: true }));
+  };
 
   updateUserAnswer = (userAnswer: string) => {
     const codeStripped = validateV2(userAnswer, this.state.initialCode);
@@ -112,7 +122,17 @@ class Challenge extends React.Component<any, any> {
                 title="test"
                 shape={"rounded"}
                 btnStyle={"empty"}
-                fn={() => {}}
+                fn={() =>
+                  this.props.dispatch(
+                    startTestCode(
+                      convertChallengeBeforeTesting({
+                        ...this.props.challenge,
+                        userAnswer: this.state.codeStr
+                      }),
+                      false
+                    )
+                  )
+                }
                 color={"primary"}
               />
               <Button
@@ -128,12 +148,25 @@ class Challenge extends React.Component<any, any> {
             </div>
           </div>
           <div className="left-section">
-            <Box height={"55%"}></Box>
+            <Box height={"55%"}>
+              <div>
+                <p>your component status:</p>
+                <p>code char length: 100</p>
+                <p>number of failed compilation: 0</p>
+              </div>
+            </Box>
             <div className="challenge-terminal">
-              <TerminalIDE ideKind={"terminal"} outputObj={""} />
+              <TerminalIDE
+                ideKind={"terminal"}
+                outputObj={this.props.challengeResult || ""}
+              />
             </div>
           </div>
         </div>
+
+        <AppModal show={true} style={{ width: "500px", padding: "0" }}>
+          <ChallengeIntroModal />
+        </AppModal>
       </div>
     );
   }
@@ -142,8 +175,9 @@ class Challenge extends React.Component<any, any> {
 const mapStateToProps = (state: any) => {
   return {
     challenge: state.battle.currentChallenge || {},
-    timer: state.Timer
+    timer: state.Timer,
+    challengeResult: state.battle.results
   };
 };
 
-export default connect(mapStateToProps)(Challenge);
+export default connect(mapStateToProps, null)(Challenge);
