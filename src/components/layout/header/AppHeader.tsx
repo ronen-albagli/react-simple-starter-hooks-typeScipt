@@ -33,6 +33,7 @@ const Header = (props: any) => {
       </div>
     ));
   };
+  console.log("props.user", props.user);
   return (
     <div className="app-header">
       <div className="header-elements">
@@ -43,7 +44,7 @@ const Header = (props: any) => {
           {renderHeaderItems()}
         </div>
         {props.user ? (
-          <Avatar user={props.user} />
+          <Avatar user={props.user} logout={props.logout} />
         ) : (
           <Button
             shape={"rounded"}

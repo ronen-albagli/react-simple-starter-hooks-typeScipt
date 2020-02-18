@@ -16,22 +16,26 @@ const Avatar = (props: any) => {
           }
         />
       </div>
-      <AvatarDDL />
+      <AvatarDDL logout={props.logout} />
     </div>
   );
 };
 
-const AvatarDDL = () => {
+const AvatarDDL = (props: any) => {
   const list = [
     { name: "profile", route: "/user/profile" },
     { name: "my activity", route: "my-activity" },
     { name: "settings", route: "settings" },
-    { name: "logout", route: "" }
+    { name: "logout", route: "", func: props.logout }
   ];
   return (
     <div className="avatar-ddl">
       {list.map((element: any) => (
-        <Link key={element.name} to={element.route}>
+        <Link
+          key={element.name}
+          to={element.route}
+          onClick={props.logout ? props.logout : null}
+        >
           {element.name}
         </Link>
       ))}

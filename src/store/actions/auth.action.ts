@@ -1,4 +1,7 @@
-import { saveToLocalStorage } from "./../../helpers/util";
+import {
+  saveToLocalStorage,
+  removeFromLocalStorage
+} from "./../../helpers/util";
 import { AUTH_ACTIONS } from "../types.d";
 import { addToasterAlert } from "./UI.actions";
 import http from "../../agnents/agent.service";
@@ -46,5 +49,18 @@ export const userLoggedOutInStart = (userName: string) => {
   return {
     type: AUTH_ACTIONS.LOG_OUT,
     payload: userName
+  };
+};
+
+export const userLoggedOut = () => {
+  return (dispatch: any) => {
+    removeFromLocalStorage("fbtoken");
+    removeFromLocalStorage("token");
+    removeFromLocalStorage("userId");
+
+    dispatch({
+      type: AUTH_ACTIONS.LOG_OUT,
+      payload: null
+    });
   };
 };

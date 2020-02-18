@@ -15,7 +15,8 @@ import Toaster from "../components/alertCenter/Toaster";
 import AppLogin from "../screens/Auth/login";
 import {
   userLoggedOutInStart,
-  userLoggedInStart
+  userLoggedInStart,
+  userLoggedOut
 } from "../store/actions/auth.action";
 import { showLogInModal } from "../store/actions/UI.actions";
 import ChallengeListPage from "../screens/challenge/challengeListPage/ChallengeListPage";
@@ -30,6 +31,7 @@ const AppRouter: React.FC = (props: any) => {
       <AppLayout
         openModel={() => props.showLogin(true)}
         activeUser={props.user}
+        logout={props.logout}
       />
       <div className="app-content">
         <Switch>
@@ -62,7 +64,7 @@ const mapDispatchToProps = (dispatch: any) => {
     // dispatching plain actions
     showLogin: (status: Boolean) => dispatch(showLogInModal(status)),
     login: (userDate: any) => dispatch(userLoggedInStart(userDate)),
-    logout: (user: any) => dispatch(userLoggedOutInStart(user))
+    logout: (user: any) => dispatch(userLoggedOut())
   };
 };
 

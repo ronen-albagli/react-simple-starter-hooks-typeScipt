@@ -4,7 +4,11 @@ import "./app.layout.scss";
 const AppLayout = (props: any) => {
   return (
     <div className="app-layout">
-      <Header openModel={props.openModel} user={props.activeUser} />
+      <Header
+        openModel={props.openModel}
+        user={props.activeUser}
+        logout={props.logout}
+      />
     </div>
   );
 };
