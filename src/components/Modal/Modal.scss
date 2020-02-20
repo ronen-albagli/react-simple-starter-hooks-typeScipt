@@ -74,27 +74,30 @@
         display: flex;
         justify-content: space-evenly;
         position: absolute;
-        bottom: 0;
+        bottom: -200px;
         width: 30%;
+        height: 200px;
+
         .line {
           position: relative;
-          bottom: -45px;
+          // bottom: -45px;
+          top: -20px;
           width: 30px;
           background-color: white;
           z-index: 100;
           border-radius: 50px;
 
           &:nth-child(1) {
-            height: 60px;
-            // animation: growInOut 2s infinite;
+            height: 40px;
+            animation: growInOut 3s infinite 5s;
           }
           &:nth-child(2) {
             height: 120px;
-            // animation: growInOut 5s infinite 1s;
+            animation: growInOut 3s infinite 1s;
           }
           &:nth-child(3) {
             height: 80px;
-            // animation: growInOut 2s infinite;
+            animation: growInOut 3s infinite 3s;
           }
         }
       }
@@ -102,12 +105,14 @@
         display: flex;
         justify-content: space-evenly;
         position: absolute;
-        bottom: 0;
+        bottom: -200px;
+        width: 30%;
+        height: 200px;
         right: 0;
-        width: 40%;
         .line {
           position: relative;
-          bottom: -45px;
+          // bottom: -45px;
+          top: -20px;
           width: 30px;
           background-color: white;
           z-index: 100;
@@ -115,14 +120,14 @@
 
           &:nth-child(1) {
             height: 60px;
-            // animation: growInOut 2s infinite;
+            animation: growInOut 3s infinite 2s;
           }
           &:nth-child(2) {
             height: 30px;
-            // animation: growInOut 5s infinite 10s;
+            animation: growInOut 3s infinite 12s;
           }
           &:nth-child(3) {
-            height: 80px;
+            height: 100px;
           }
           // &div {
           //   animation: growInOut 2s infinite;
@@ -146,9 +151,9 @@
 @keyframes growInOut {
   0%,
   100% {
-    height: 100px;
+    height: 10%;
   }
   50% {
-    height: 300px;
+    height: 40%;
   }
 }
