@@ -2,7 +2,7 @@ import {
   saveToLocalStorage,
   removeFromLocalStorage
 } from "./../../helpers/util";
-import { AUTH_ACTIONS } from "../types.d";
+import { AUTH_ACTIONS, UI_ACTIONS } from "../types.d";
 import { addToasterAlert } from "./UI.actions";
 import http from "../../agnents/agent.service";
 
@@ -57,7 +57,9 @@ export const userLoggedOut = () => {
     removeFromLocalStorage("fbtoken");
     removeFromLocalStorage("token");
     removeFromLocalStorage("userId");
-
+    dispatch({
+      type: UI_ACTIONS.NAVIGATE_HOME
+    });
     dispatch({
       type: AUTH_ACTIONS.LOG_OUT,
       payload: null

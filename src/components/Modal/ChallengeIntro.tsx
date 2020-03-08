@@ -6,8 +6,8 @@ const ChallengeIntroModal = (props: any) => {
     <div className="intro-modal">
       <div className="intro-background">
         <div className="top">
-          <div>Before Getting Started</div>
-          <div>Your challenge is ${}</div>
+          <div className="title">Before Getting Started</div>
+          <div className="sub-title">Your challenge is ${}</div>
           <div>Your goal is: ${}</div>
           <div>
             When your opponent will be ready you be able to start the battle{" "}

@@ -1,4 +1,5 @@
 import { UI_ACTIONS } from "./../types.d";
+import { history } from "../../router/appRouter";
 export default (state: any = [], action: any) => {
   switch (action.type) {
     case UI_ACTIONS.SHOW_LOADER:
@@ -20,7 +21,9 @@ export default (state: any = [], action: any) => {
       newMsg.splice(action.payload, 1);
       return { ...state, messages: [...newMsg] };
     }
-
+    case UI_ACTIONS.TRACK_ROUTE: {
+      return { ...state, route: action.payload };
+    }
     case UI_ACTIONS.SHOW_LOGIN:
       return { ...state, showLoginModal: action.payload };
     default:

@@ -1,5 +1,10 @@
 import axios from "axios";
-import { showLoader, hideLoader } from "../store/actions/UI.actions";
+import {
+  showLoader,
+  hideLoader,
+  moveToHomeScreen
+} from "../store/actions/UI.actions";
+import { userLoggedOut } from "../store/actions/auth.action";
 
 /**
  * This is Api class for generic HTTP request. ==> Base on Axios library.
@@ -15,12 +20,15 @@ class API implements httpFactory {
 
   get = async (url: string) => {
     try {
-      return await axios.get(url, {
+      const response = await axios.get(url, {
         headers: {
           "x-auth-token": localStorage.getItem("token")
         }
       });
+      return response;
     } catch (error) {
+      this.dispatch(userLoggedOut());
+      // this.dispatch(moveToHomeScreen());
       return error;
     }
   };

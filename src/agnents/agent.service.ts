@@ -46,10 +46,13 @@ const Auth = {
 const User = {
   getCurrentUser: async () => {
     const userId = fetchFromLocalStorage("userId");
-    const data: any = await apiRequestHandler.get(
-      `${HTTP_CONST.BASE_URL.DEV}${HTTP_CONST.API_ROUTES.USER.GET}?id=${userId}`
-    );
-    return data;
+    if (userId) {
+      const data: any = await apiRequestHandler.get(
+        `${HTTP_CONST.BASE_URL.DEV}${HTTP_CONST.API_ROUTES.USER.GET}?id=${userId}`
+      );
+      return data;
+    }
+    return { data: undefined };
   },
   getUserById: async (id: string) => {
     const data: any = await apiRequestHandler.get(
@@ -68,9 +71,14 @@ const Challenge = {
     return newChallenge;
   },
   getChallenge: async (challengeId: string) => {
-    return await apiRequestHandler.get(
-      `${HTTP_CONST.BASE_URL.DEV}${HTTP_CONST.API_ROUTES.Challenge.getChallenge}${challengeId}`
-    );
+    try {
+      const response = await apiRequestHandler.get(
+        `${HTTP_CONST.BASE_URL.DEV}${HTTP_CONST.API_ROUTES.Challenge.getChallenge}${challengeId}`
+      );
+      return response;
+    } catch (error) {
+      return error;
+    }
   }
 };
 

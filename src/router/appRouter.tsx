@@ -18,14 +18,30 @@ import {
   userLoggedInStart,
   userLoggedOut
 } from "../store/actions/auth.action";
-import { showLogInModal } from "../store/actions/UI.actions";
+import { showLogInModal, trackRoute } from "../store/actions/UI.actions";
 import ChallengeListPage from "../screens/challenge/challengeListPage/ChallengeListPage";
 import AppFooter from "../components/AppFooter/AppFooter";
 import Challenge from "../screens/challenge/challenge/Challenge";
 
 export const history = createHistory();
 
+const shouldNavigateHome = (locationPath: string) => {
+  if (locationPath.includes("challenge/")) {
+    return true;
+  }
+  return false;
+};
+
 const AppRouter: React.FC = (props: any) => {
+  if (props.showLogInScreen && shouldNavigateHome(history.location.pathname)) {
+    props.saveLastRoute(history.location.pathname);
+    history.push("/");
+  }
+  if (props.lastRoute) {
+    history.push(props.lastRoute);
+    props.saveLastRoute(history.location.pathname);
+  }
+
   return (
     <Router history={history}>
       <AppLayout
@@ -54,6 +70,7 @@ const AppRouter: React.FC = (props: any) => {
         loginSocial={props.login}
         logoutSocial={props.logout}
         isUserLoggedIn={props.user ? true : false}
+        routeToReturn={props.lastRoute || null}
       />
     </Router>
   );
@@ -64,15 +81,19 @@ const mapDispatchToProps = (dispatch: any) => {
     // dispatching plain actions
     showLogin: (status: Boolean) => dispatch(showLogInModal(status)),
     login: (userDate: any) => dispatch(userLoggedInStart(userDate)),
-    logout: (user: any) => dispatch(userLoggedOut())
+    logout: (user: any) => dispatch(userLoggedOut()),
+    saveLastRoute: (path: string) =>
+      dispatch(trackRoute(history.location.pathname))
   };
 };
 
 const mapStateToProps = (state: any) => {
+  console.log(state);
   return {
     showLoader: state.UI.showLoader,
     user: state.auth.activeUser,
-    showLogInScreen: state.UI.showLoginModal
+    showLogInScreen: state.UI.showLoginModal,
+    lastRoute: state.UI.route
   };
 };
 

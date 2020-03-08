@@ -45,8 +45,14 @@ export const fetchChallengeAction = (challengeData: any) => {
 
 export const getChallenge = (challengeId: string) => {
   return async (dispatch: any) => {
-    const { data: challenge } = await http.Challenge.getChallenge(challengeId);
-    dispatch(fetchChallengeAction(challenge));
+    const userToken = fetchFromLocalStorage("token");
+    if (userToken) {
+      const { data: challenge } = await http.Challenge.getChallenge(
+        challengeId
+      );
+      dispatch(fetchChallengeAction(challenge));
+    }
+    dispatch(showLogInModal(true));
   };
 };
 

@@ -25,11 +25,28 @@ const AppLogin = (props: any) => {
   };
 
   const responseGoogle = (response: any) => {
-    console.log(response);
+    const {
+      Qt: { Ad: name, zu: email, UK: picture },
+      accessToken: token
+    } = response;
+    props.loginSocial({ name, email, picture, token, loggedInWith: "google" });
   };
   const responseFacebook = (response: any) => {
-    console.log("response", response);
-    props.loginSocial(response);
+    const {
+      name,
+      email,
+      accessToken: token,
+      picture: {
+        data: { url: picture }
+      }
+    } = response;
+    props.loginSocial({
+      name,
+      email,
+      picture,
+      token,
+      loggedInWith: "facebook"
+    });
   };
 
   return (

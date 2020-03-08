@@ -70,6 +70,18 @@
       height: 60%;
       background-color: white;
       width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      flex-direction: column;
+      .title {
+        font-size: 36px;
+        color: yellow;
+      }
+      .sub-title {
+        font-size: 28px;
+        color: red;
+      }
       .left {
         display: flex;
         justify-content: space-evenly;

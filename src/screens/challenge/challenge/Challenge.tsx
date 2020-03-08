@@ -164,9 +164,9 @@ class Challenge extends React.Component<any, any> {
           </div>
         </div>
 
-        <AppModal show={true} style={{ width: "500px", padding: "0" }}>
+        {/* <AppModal show={true} style={{ width: "500px", padding: "0" }}>
           <ChallengeIntroModal />
-        </AppModal>
+        </AppModal> */}
       </div>
     );
   }

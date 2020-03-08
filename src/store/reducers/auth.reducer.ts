@@ -1,4 +1,4 @@
-import { AUTH_ACTIONS } from "./../types.d";
+import { AUTH_ACTIONS, UI_ACTIONS } from "./../types.d";
 
 export default (state = [], action: any) => {
   switch (action.type) {
